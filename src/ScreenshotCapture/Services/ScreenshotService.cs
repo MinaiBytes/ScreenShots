@@ -110,35 +110,37 @@ public sealed class ScreenshotService : IScreenshotService
     }
 
     /// <inheritdoc />
-    public string CaptureAndSave(CancellationToken cancellationToken = default)
+    public Task<string> CaptureAndSaveAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        var filePath = CreateSaveFilePath(_nowProvider());
-
-        using var bitmap = CapturePrimaryScreen(cancellationToken);
-        SaveAsPng(bitmap, filePath, cancellationToken);
-        return filePath;
+        return Task.Run(() =>
+        {
+            var filePath = CreateSaveFilePath(_nowProvider());
+            using var bitmap = CapturePrimaryScreen(cancellationToken);
+            SaveAsPng(bitmap, filePath, cancellationToken);
+            return filePath;
+        }, cancellationToken);
     }
 
     /// <summary>
     /// 固定保存先ルールに基づき保存先ディレクトリを解決し、作成処理を呼び出します。
-    /// 初回解決後はキャッシュを返します。
+    /// 初回解決後はキャッシュを返します。スレッドセーフです。
     /// </summary>
     /// <returns>保存先ディレクトリパス。</returns>
     internal string EnsureSaveDirectory()
     {
-        var cachedDirectory = _cachedSaveDirectory;
-        if (cachedDirectory is not null)
+        var cached = Volatile.Read(ref _cachedSaveDirectory);
+        if (cached is not null)
         {
-            return cachedDirectory;
+            return cached;
         }
 
         var root = _directoryExists(PrimaryRoot) ? PrimaryRoot : FallbackRoot;
         var directoryPath = Path.Combine(root, SubDirectoryName);
         _createDirectory(directoryPath);
-        _cachedSaveDirectory ??= directoryPath;
-        return _cachedSaveDirectory;
+        var previous = Interlocked.CompareExchange(ref _cachedSaveDirectory, directoryPath, null);
+        return previous ?? directoryPath;
     }
 
     /// <summary>
@@ -187,9 +189,7 @@ public sealed class ScreenshotService : IScreenshotService
     {
         var directoryPath = EnsureSaveDirectory();
         var fileName =
-            "screenshot_" +
-            timestamp.LocalDateTime.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) +
-            ".png";
+            $"screenshot_{timestamp.LocalDateTime.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture)}.png";
 
         return Path.Combine(directoryPath, fileName);
     }
