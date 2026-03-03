@@ -1,8 +1,11 @@
+using System.Runtime.Versioning;
+
 namespace ScreenshotCapture.Abstractions;
 
 /// <summary>
 /// スクリーンショットの取得と PNG 保存（固定保存先への保存）を提供するサービスを表します。
 /// </summary>
+[SupportedOSPlatform("windows")]
 public interface IScreenshotService
 {
     /// <summary>
