@@ -110,15 +110,17 @@ public sealed class ScreenshotService : IScreenshotService
     }
 
     /// <inheritdoc />
-    public string CaptureAndSave(CancellationToken cancellationToken = default)
+    public Task<string> CaptureAndSaveAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        var filePath = CreateSaveFilePath(_nowProvider());
-
-        using var bitmap = CapturePrimaryScreen(cancellationToken);
-        SaveAsPng(bitmap, filePath, cancellationToken);
-        return filePath;
+        return Task.Run(() =>
+        {
+            var filePath = CreateSaveFilePath(_nowProvider());
+            using var bitmap = CapturePrimaryScreen(cancellationToken);
+            SaveAsPng(bitmap, filePath, cancellationToken);
+            return filePath;
+        }, cancellationToken);
     }
 
     /// <summary>
