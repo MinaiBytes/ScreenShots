@@ -1,0 +1,5 @@
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows10.0.18362.0/ScreenshotCapture.csproj.AssemblyReference.cache
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows10.0.18362.0/ScreenshotCapture.GeneratedMSBuildEditorConfig.editorconfig
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows10.0.18362.0/ScreenshotCapture.AssemblyInfoInputs.cache
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows10.0.18362.0/ScreenshotCapture.AssemblyInfo.cs
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows10.0.18362.0/ScreenshotCapture.csproj.CoreCompileInputs.cache

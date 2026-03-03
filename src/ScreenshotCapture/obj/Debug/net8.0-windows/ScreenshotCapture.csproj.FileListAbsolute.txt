@@ -1,0 +1,14 @@
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/bin/Debug/net8.0-windows/ScreenshotCapture.deps.json
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/bin/Debug/net8.0-windows/ScreenshotCapture.dll
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/bin/Debug/net8.0-windows/ScreenshotCapture.pdb
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/bin/Debug/net8.0-windows/ScreenshotCapture.xml
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.csproj.AssemblyReference.cache
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.GeneratedMSBuildEditorConfig.editorconfig
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.AssemblyInfoInputs.cache
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.AssemblyInfo.cs
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.csproj.CoreCompileInputs.cache
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.dll
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/refint/ScreenshotCapture.dll
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.xml
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ScreenshotCapture.pdb
+/Users/taiki/Documents/ScreenShots/src/ScreenshotCapture/obj/Debug/net8.0-windows/ref/ScreenshotCapture.dll

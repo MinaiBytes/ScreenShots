@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ScreenshotCapture</name>
+    </assembly>
+    <members>
+        <member name="T:ScreenshotCapture.Abstractions.IScreenshotService">
+            <summary>
+            スクリーンショットの取得と PNG 保存を提供するサービスを表します。
+            </summary>
+        </member>
+        <member name="M:ScreenshotCapture.Abstractions.IScreenshotService.CapturePrimaryScreen(System.Threading.CancellationToken)">
+            <summary>
+            プライマリディスプレイ全体をキャプチャします。
+            </summary>
+            <param name="cancellationToken">キャンセル トークン。</param>
+            <returns>キャプチャしたビットマップ。呼び出し側で破棄してください。</returns>
+        </member>
+        <member name="M:ScreenshotCapture.Abstractions.IScreenshotService.SaveAsPng(System.Drawing.Bitmap,System.String,System.Threading.CancellationToken)">
+            <summary>
+            ビットマップを PNG 形式で指定ファイルパスへ保存します。
+            </summary>
+            <param name="bitmap">保存対象のビットマップ。</param>
+            <param name="filePath">保存先ファイルパス。</param>
+            <param name="cancellationToken">キャンセル トークン。</param>
+        </member>
+        <member name="M:ScreenshotCapture.Abstractions.IScreenshotService.CaptureAndSave(System.Threading.CancellationToken)">
+            <summary>
+            プライマリディスプレイをキャプチャし、固定保存先ルールに従って PNG で保存します。
+            </summary>
+            <param name="cancellationToken">キャンセル トークン。</param>
+            <returns>保存したファイルパス。</returns>
+        </member>
+        <member name="T:ScreenshotCapture.DependencyInjection.ScreenshotCaptureServiceCollectionExtensions">
+            <summary>
+            <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> にスクリーンショット関連サービスを登録する拡張メソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:ScreenshotCapture.DependencyInjection.ScreenshotCaptureServiceCollectionExtensions.AddScreenshotCaptureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            スクリーンショット取得・保存機能を DI コンテナへ登録します。
+            </summary>
+            <param name="services">登録先のサービスコレクション。</param>
+            <returns>メソッドチェーン可能な <paramref name="services"/>。</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="services"/> が <see langword="null"/> の場合。</exception>
+        </member>
+        <member name="T:ScreenshotCapture.Services.ScreenshotService">
+            <summary>
+            プライマリディスプレイのスクリーンキャプチャと PNG 保存を行う Windows 専用サービスです。
+            </summary>
+        </member>
+        <member name="F:ScreenshotCapture.Services.ScreenshotService.PrimaryRoot">
+            <summary>
+            優先保存先ルートです。
+            </summary>
+        </member>
+        <member name="F:ScreenshotCapture.Services.ScreenshotService.FallbackRoot">
+            <summary>
+            フォールバック保存先ルートです。
+            </summary>
+        </member>
+        <member name="F:ScreenshotCapture.Services.ScreenshotService.SubDirectoryName">
+            <summary>
+            保存先サブディレクトリ名です。
+            </summary>
+        </member>
+        <member name="M:ScreenshotCapture.Services.ScreenshotService.#ctor(System.Func{System.String,System.Boolean},System.Action{System.String},System.Func{System.DateTimeOffset})">
+            <summary>
+            <see cref="T:ScreenshotCapture.Services.ScreenshotService"/> を初期化します。
+            </summary>
+            <param name="directoryExists">ディレクトリ存在判定関数。未指定時は <see cref="M:System.IO.Directory.Exists(System.String)"/> を使用します。</param>
+            <param name="createDirectory">ディレクトリ作成処理。未指定時は <see cref="M:System.IO.Directory.CreateDirectory(System.String)"/> を使用します。</param>
+            <param name="nowProvider">現在時刻取得処理。未指定時は <see cref="P:System.DateTimeOffset.Now"/> を使用します。</param>
+        </member>
+        <member name="M:ScreenshotCapture.Services.ScreenshotService.CapturePrimaryScreen(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:ScreenshotCapture.Services.ScreenshotService.SaveAsPng(System.Drawing.Bitmap,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:ScreenshotCapture.Services.ScreenshotService.CaptureAndSave(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:ScreenshotCapture.Services.ScreenshotService.EnsureSaveDirectory">
+            <summary>
+            固定保存先ルールに基づき保存先ディレクトリを解決し、存在しない場合は作成します。
+            </summary>
+            <returns>保存先ディレクトリパス。</returns>
+        </member>
+    </members>
+</doc>
